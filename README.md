@@ -21,9 +21,7 @@ npm run seed
 
 ## Usage
 
-What you should know about using this repo:
-
-The feature to delete saved notes ahve not been added yet but will be added at a later date.
+This application contains no front-end so an API platform is needed in order to use it.
 
 ## License 
 
@@ -41,7 +39,7 @@ If you want to run tests for the application, run the following commands in your
 
 npm start
 
-Then go into your API platform and run tests using the routes inside the routes/api folder.
+Then go into your perfered API platform and run tests using the routes inside the routes/api folder.
 
 ## Questions
 
