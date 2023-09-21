@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findAll({
+      // Associated Product data is included
       include: [{ model: Product }],
     });
     res.status(200).json(categoryData);
@@ -22,6 +23,7 @@ router.get("/:id", async (req, res) => {
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
+      // Associated Product data is included
       include: [{ model: Product }],
     });
     res.status(200).json(categoryData);
@@ -43,15 +45,28 @@ router.post("/", async (req, res) => {
 });
   
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   // update a category by its `id` value
-
+  try {
+    // Updates the category name  with the one in the request body
+    const updatedCategory = await Category.update({category_name: req.body.category_name},
+    {
+      where: {
+        id:req.params.id,
+      },
+    }
+  );
+  res.status(200).json(updatedCategory);
+  } catch (err) {
+    res.status(500).json(err)
+  }
+  
 });
 
 router.delete("/:id", async (req, res) => {
   // delete a category by its `id` value
   try {
-    const categoryData =  Category.destroy({
+    const categoryData =  await Category.destroy({
       where: {
         id: req.params.id,
       },
